@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-compatible" content="IE-edge">
+  <meta http-equiv="content type" content="text/html" , charset="UTF-8">
+  <title>Curso de Angular</title>
+  <link rel="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="container" ng-app="aplicacao">
+  <div class="header-inner"></div>
+  <h1 style="text-align:center; color:blue;">
+    Bem Vindo ao Curso de Desenvolvimento Web Angular JS
+  </h1>
+  <div ng-controller="PrimeiroController" class="well">
+    <p>Ola, {{nome}} seja benvindo!</p>
+    <div ng-class="{panel panel-primary: iniciado, 'panel panel-danger:!iniciado'}">
+
+    </div>
+    <div>
+      <div class="panel-heading">
+        <h3 class="panel-title">Situaçao do Curso</h3>
+      </div>
+    </div>
+    <div>
+      <div class="panel-body">
+        <p ng-show="iniciado">Curso em Andamento!</p>
+        <p ng-hide="iniciado">Curso Finalizado!</p>
+        <p ng-if="/iniciado">Aguarde o proximo Curso!</p>
+        <p> Preco do curso: {{valor| currency:'R$'}} </p>
+        
+      </div>
+    </div>
+    <br><br>
+
+    <div>
+      <label> Definir Preco</label>
+      <input type="number" id="valor" name="valor" ng-model="valor">
+    </div>
+
+    <h3>Alunos Cadastrados</h3>
+
+    <div>
+      <label> Filtra por nome: </label>
+      <input type="text" ng-model="filtro">
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tr>
+          <th>
+            nome
+          </th>
+          <th>
+            Idade
+          </th>
+        </tr>
+        <tr ng-repeat="aluno in alunos| filter:filtro">
+          <td ng-click="ordenadoPorNome">
+            {{aluno.nome}}
+          </td>
+          <td ng-click="ordenadoPorIdade">
+            {{aluno.idade}}
+          </td>
+
+        </tr>
+      </table>
+    </div>
+
+    <br>
+    <button ng-show="iniciado" ng-click="finalizar()" class="btn btn-danger">
+      Finalizar
+    </button>
+
+    <button ng-hide="iniciado" ng-click="iniciar()" class="btn btn-success">
+      Iniciar
+    </button>
+  </div>
+  <h3>Nova Incricao no curso</h3>
+  <form name="form_1">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group form-group-default">
+          <label>Nome</label>
+          <input class="form-control" type="text" id="nome_aluno" name="nome_aluno" ng-model="nome_aluno"
+            ng-readonly="/iniciado" ng-minlength="3">
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="col-md-4">
+        <div class="form-group form-group-default">
+          <label>Idade</label>
+          <input class="form-control" type="number" id="idade_aluno" ng-model="idade_aluno">
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <div class="col-md-4"></div>
+  <button ng-click="submeter" class="btn btn-primary" ng-disabled="/iniciado">
+    Adicionar
+  </button>
+  </div>
+
+
+  <div class="container-fluid container-fixed-Lg footer">
+    <div class="copyright sm-text-center">
+      <p class="small no-margin pull-left sm-pull-reset">
+        <span class="hint-text">
+          Copyright @ 2024
+        </span>
+      </p>
+    </div>
+  </div>
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="scripts/libs/angular.js"></script>
+  <script src="scripts/app.js/app.js"></script>
+  <script src="scripts/primeiro-controller.js/primeiro-controller.js"></script>
+
+</body>
+
+<body>
+  <app-root></app-root>
+</body>
+
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Bem Estar 360 - Monitoramento de Saúde para Idosos </title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap" />
+
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /*Etapa1: Regras Comuns, de uso GERAL*/
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Verdana, sans-serif;
+            background-color: whitesmoke;
+        }
+
+        /*Regras de CSS Reset*/
+
+        body,
+        h1,
+        h2,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <head>
+
+        <style>
+            body {
+                font-family: 'Roboto', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f0f5f9;
+                color: #333;
+                font-size: 18px;
+                line-height: 1.6;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            header {
+                background-color: #4CAF50;
+                color: white;
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            h1,
+            h2 {
+                margin: 0;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+                color: #4CAF50;
+            }
+
+            nav {
+                background-color: #45a049;
+                padding: 15px 0;
+            }
+
+            nav ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                text-align: center;
+            }
+
+            nav ul li {
+                display: inline;
+                margin: 0 15px;
+            }
+
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                font-size: 1.2em;
+                padding: 10px 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+
+            nav ul li a:hover,
+            nav ul li a:focus {
+                background-color: #66bb6a;
+            }
+
+            .dashboard {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin-top: 30px;
+            }
+
+            .card {
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+                padding: 25px;
+                width: calc(50% - 15px);
+            }
+
+            .indicator {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .indicator-icon {
+                width: 60px;
+                height: 60px;
+                margin-right: 15px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            .pressure-icon {
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234CAF50"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>');
+            }
+
+            .glucose-icon {
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234CAF50"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>');
+            }
+
+            .heartbeat-icon {
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234CAF50"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+            }
+
+            .temperature-icon {
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234CAF50"><path d="M15 13V5c0-1.66-1.34-3-3-3S9 3.34 9 5v8c-1.21.91-2 2.37-2 4 0 2.76 2.24 5 5 5s5-2.24 5-5c0-1.63-.79-3.09-2-4zm-4-8c0-.55.45-1 1-1s1 .45 1 1h-2z"/></svg>');
+            }
+
+            .indicator-value {
+                font-size: 1.6em;
+                font-weight: bold;
+            }
+
+            .indicator-label {
+                font-size: 1.2em;
+                color: #666;
+            }
+
+            button {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 15px 30px;
+                font-size: 1.2em;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                margin: 10px 0;
+                width: 100%;
+            }
+
+            button:hover,
+            button:focus {
+                background-color: #45a049;
+            }
+
+            .system-component {
+                background-color: #e8f5e9;
+                border: 2px solid #4CAF50;
+                border-radius: 10px;
+                padding: 20px;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            .system-component h3 {
+                color: #2e7d32;
+                margin-top: 0;
+            }
+
+            .system-component ul {
+                padding-left: 20px;
+            }
+
+            .folder-structure {
+                margin-top: 20px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+
+            th,
+            td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+
+            @media (max-width: 768px) {
+
+                .card,
+                .system-component {
+                    width: 100%;
+                }
+
+                nav ul li {
+                    display: block;
+                    margin: 10px 0;
+                }
+
+                .indicator-icon {
+                    width: 50px;
+                    height: 50px;
+                }
+
+                .indicator-value {
+                    font-size: 1.4em;
+                }
+
+                .indicator-label {
+                    font-size: 1em;
+                }
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <script src="https://ng-bootstrap.github.io/#/home/ng add @ng-bootstrap/ng-bootstrap"></script>
+
+
+    </head>
+
+
+
+
+<body ng-app="healthMonitorApp" ng-controller="MainController">
+    <header>
+        <h1>BEM ESTAR 360</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#/" ng-click="changePage('dashboard')">Início</a></li>
+            <li><a href="#/historico" ng-click="changePage('historico')">Histórico</a></li>
+            <li><a href="#/alarmes" ng-click="changePage('alarmes')">Alarmes</a></li>
+            <li><a href="#/configuracoes" ng-click="changePage('configuracoes')">Configurações</a></li>
+            <li><a href="#/pacientes" ng-click="changePage('pacientes')">Pacientes</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div ng-show="currentPage === 'dashboard'">
+            <div class="dashboard">
+                <div class="card">
+                    <h2>Indicadores de Saúde</h2>
+                    <div class="indicator">
+                        <div class="indicator-icon pressure-icon"></div>
+                        <div>
+                            <div class="indicator-label">Pressão Arterial</div>
+                            <div class="indicator-value">{{healthData.bloodPressure}} mmHg</div>
+                        </div>
+                    </div>
+                    <div class="indicator">
+                        <div class="indicator-icon glucose-icon"></div>
+                        <div>
+                            <div class="indicator-label">Glicemia</div>
+                            <div class="indicator-value">{{healthData.glucose}} mg/dL</div>
+                        </div>
+                    </div>
+                    <div class="indicator">
+                        <div class="indicator-icon heartbeat-icon"></div>
+                        <div>
+                            <div class="indicator-label">Batimentos Cardíacos</div>
+                            <div class="indicator-value">{{healthData.heartRate}} bpm</div>
+                        </div>
+                    </div>
+                    <div class="indicator">
+                        <div class="indicator-icon temperature-icon"></div>
+                        <div>
+                            <div class="indicator-label">Temperatura</div>
+                            <div class="indicator-value">{{healthData.temperature}} °C</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Ações Rápidas</h2>
+                    <button ng-click="updateReadings()">Atualizar Leituras</button>
+                    <button ng-click="setAlarm()">Configurar Alarme</button>
+                    <button ng-click="callEmergency()">Chamar Emergência</button>
+                </div>
+                <div class="card">
+                    <h2>Localização Atual</h2>
+                    <div id="map" style="height: 300px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="currentPage === 'historico'">
+            <h2>Histórico de Saúde</h2>
+            <div class="card">
+                <canvas id="healthChart"></canvas>
+            </div>
+        </div>
+
+        <div ng-show="currentPage === 'alarmes'">
+            <h2>Configuração de Alarmes</h2>
+            <!-- Conteúdo da página de alarmes -->
+        </div>
+
+        <div ng-show="currentPage === 'configuracoes'">
+            <h2>Configurações do Sistema</h2>
+            <!-- Conteúdo da página de configurações -->
+        </div>
+
+        <div ng-show="currentPage === 'pacientes'">
+            <h2>Pacientes</h2>
+            <div class="card">
+                <h3>Lista de Pacientes</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Endereço</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="patient in patients">
+                            <td><img ng-src="{{patient.photo}}" alt="{{patient.name}}" width="50" height="50"></td>
+                            <td>{{patient.name}}</td>
+                            <td>{{patient.age}}</td>
+                            <td>{{patient.address}}</td>
+                            <td>{{patient.email}}</td>
+                            <td>{{patient.phone}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card">
+                <h3>Cadastro de Prontuário</h3>
+                <form ng-submit="submitPatientForm()">
+                    <div class="form-group">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" ng-model="newPatient.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Idade:</label>
+                        <input type="number" id="age" ng-model="newPatient.age" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Endereço:</label>
+                        <input type="text" id="address" ng-model="newPatient.address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" ng-model="newPatient.email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefone:</label>
+                        <input type="tel" id="phone" ng-model="newPatient.phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicalHistory">Histórico Médico:</label>
+                        <textarea id="medicalHistory" ng-model="newPatient.medicalHistory" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="medications">Medicações:</label>
+                        <textarea id="medications" ng-model="newPatient.medications" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="allergies">Alergias:</label>
+                        <textarea id="allergies" ng-model="newPatient.allergies" rows="4"></textarea>
+                    </div>
+                    <button type="submit">Cadastrar Paciente</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const app = angular.module('healthMonitorApp', []);
+
+        app.controller('MainController', function ($scope) {
+            $scope.currentPage = 'dashboard';
+            $scope.healthData = {
+                bloodPressure: '120/80',
+                glucose: '100',
+                heartRate: '72',
+                temperature: '36.5'
+            };
+
+            $scope.patients = [
+                { photo: 'patient1.jpg', name: 'João Silva', age: 70, address: 'Rua A, 123', email: 'joao@email.com', phone: '(11) 1234-5678' },
+                { photo: 'patient2.jpg', name: 'Maria Oliveira', age: 65, address: 'Av. B, 456', email: 'maria@email.com', phone: '(11) 2345-6789' }
+            ];
+
+            $scope.newPatient = {};
+
+            $scope.changePage = function (page) {
+                $scope.currentPage = page;
+                if (page === 'historico') {
+                    setTimeout(initChart, 0);
+                } else if (page === 'dashboard') {
+                    setTimeout(initMap, 0);
+                } else if (page === 'pacientes') {
+                    setTimeout($scope.initFolderStructure, 0);
+                }
+            };
+
+            $scope.updateReadings = function () {
+                $scope.healthData.bloodPressure = Math.floor(Math.random() * (140 - 100 + 1) + 100) + '/' + Math.floor(Math.random() * (90 - 60 + 1) + 60);
+                $scope.healthData.glucose = Math.floor(Math.random() * (180 - 70 + 1) + 70);
+                $scope.healthData.heartRate = Math.floor(Math.random() * (100 - 60 + 1) + 60);
+                $scope.healthData.temperature = (Math.random() * (37.5 - 36.0) + 36.0).toFixed(1);
+                alert('Leituras atualizadas com sucesso!');
+            };
+
+            $scope.setAlarm = function () {
+                alert('Configuração de alarme aberta. Defina os limites para cada indicador.');
+            };
+
+            $scope.callEmergency = function () {
+                alert('Chamando serviços de emergência. Por favor, mantenha a calma.');
+            };
+
+            $scope.submitPatientForm = function () {
+                $scope.patients.push($scope.newPatient);
+                $scope.newPatient = {};
+                alert('Paciente cadastrado com sucesso!');
+            };
+
+            function initChart() {
+                const ctx = document.getElementById('healthChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                        datasets: [{
+                            label: 'Pressão Sistólica',
+                            data: [120, 122, 123, 120, 118, 122],
+                            borderColor: 'rgb(255, 99, 132)',
+                            tension: 0.1
+                        }, {
+                            label: 'Pressão Diastólica',
+                            data: [80, 82, 80, 78, 80, 82],
+                            borderColor: 'rgb(54, 162, 235)',
+                            tension: 0.1
+                        }, {
+                            label: 'Glicemia',
+                            data: [100, 105, 95, 110, 98, 102],
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Histórico de Indicadores de Saúde'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            function initMap() {
+                const map = L.map('map').setView([-23.5505, -46.6333], 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+                L.marker([-23.5505, -46.6333]).addTo(map)
+                    .bindPopup('Localização Atual')
+                    .openPopup();
+            }
+
+            setTimeout(initMap, 0);
+        });
+    </script>
+
+
+
+    <header class="topo">
+        <h1>Site exemplo</h1>
+        <nav class="menu">
+            <a href="">link 1</a>
+            <a href="">link 2</a>
+            <a href="">link 3</a>
+
+        </nav>
+
+    </header>
+
+    <main class="conteudo">
+        <article class="um">
+            <h2>um</h2>
+            <p>Lorem 10</p>
+        </article>
+
+        <article class="dois"></article>
+        <h2>dois</h2>
+        <p>Lorem 10</p>
+        </article>
+
+        <article class="tres"></article>
+        <h2>tres</h2>
+        <p>Lorem 10</p>
+        </article>
+        <div class="indicadores-de-saude">
+
+        </div>
+
+
+    </main>
+
+    <footer class="rodape">
+
+        <p>Exemplo site/layout</p>
+
+    </footer>
+
+
+
+</body>
+
+</html>
